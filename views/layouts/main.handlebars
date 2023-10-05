@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Blog</title>
+  </head>
+  <body>
+    <div class="flex-column justify-space-around">
+      <header class="display-flex justify-space-between align-center p-2">
+        <header class="head">
+          <a class="main-header" href="/">Edward's Blog</a>
+        </header>
+        <nav>
+          <ul class="nav_list">
+            <li class="nav_list_item"><a href="/">Home</a></li>
+            <!-- Conditionally render login or logout links -->
+            {{#if logged_in}}
+            <li class="nav_list_item active">
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li><button class="no-button" id="logout">Logout</button></li>
+            
+            {{else}}
+            <li class="nav_list_item">
+              <a href="/login">login</a>
+            </li>
+            {{/if}}
+          </ul>
+        </nav>
+      </header>
+      <main class="container container-fluid mt-5">
+        <!-- Render the sub layout -->
+        {{{ body }}}
+      </main>
+      <footer></footer>
+    </div>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
+</html>
