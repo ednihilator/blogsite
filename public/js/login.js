@@ -4,7 +4,7 @@ const loginFormHandler = async (event) => {
   // Collect values from the login form
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
-
+  //if an email and password are given this will allow a user to login
   if (email && password) {
     // Send a POST request to the API endpoint
     const response = await fetch("/api/users/login", {
@@ -28,7 +28,8 @@ const signupFormHandler = async (event) => {
   const name = document.querySelector("#name-signup").value.trim();
   const email = document.querySelector("#email-signup").value.trim();
   const password = document.querySelector("#password-signup").value.trim();
-
+  //this creates a new user using the data from the name, email, and password fields
+  //it will then send them to their dashboard
   if (name && email && password) {
     const response = await fetch("/api/users", {
       method: "POST",

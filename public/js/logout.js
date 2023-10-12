@@ -1,3 +1,4 @@
+//this handles logging out and will send users to the homepage
 const logout = async () => {
   const response = await fetch("/api/users/logout", {
     method: "POST",

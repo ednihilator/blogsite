@@ -3,9 +3,8 @@ const newFormHandler = async (event) => {
 
   const title = document.querySelector("#post-title").value.trim();
   const content = document.querySelector("#post-content").value.trim();
-
+  //if a title and content are given it'll create a new post and refreshes the dashboard
   if (title && content) {
-    //need to change stuff from project to post?
     const response = await fetch(`/api/posts`, {
       method: "POST",
       body: JSON.stringify({ title, content }),
@@ -21,11 +20,10 @@ const newFormHandler = async (event) => {
     }
   }
 };
-
+//this deletes a post and refreshes the dashboard
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-    //need to change stuff from project to post?
     const response = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
     });

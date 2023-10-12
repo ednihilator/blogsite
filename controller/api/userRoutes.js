@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+//this is the basic login function which finds a user by their email
+//assuming the login info is correct, it'll log them in. otherwise it'll give an error
+//notice that we give the same error message for nonexistant user data and incorrect passwords for added security
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -28,6 +31,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//this logs people out and destroys the logged_in status
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -37,7 +41,8 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
-
+//this creates a new user. first it tries to find a user based off the email to check if the user already exists
+//if it's new, it'll create a new user and start a session for them
 router.post("/", async (req, res) => {
   const userData = await User.findOne({ where: { email: req.body.email } });
   if (userData) {

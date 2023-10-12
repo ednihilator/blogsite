@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post } = require("../../models");
 
+// this function creates a new post attached to a user's id
 router.post("/", async (req, res) => {
   console.log(req.body);
   try {
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
     throw err;
   }
 });
-
+// this function destroys a post grabbing it from a users id. the if statement checks to see if posts exists and will delete or output an error
 router.delete("/:id", async (req, res) => {
   const postData = await Post.destroy({ where: { id: req.params.id } });
   if (postData[0] > 0) {
